@@ -14,9 +14,9 @@ public class BankSystem {
 
     public BankSystem() {
         this.transactions.add(new ShowSaldo());
-        this.transactions.add(new CashOut());
-        this.transactions.add(new Deposit());
-        this.transactions.add(new Transfer(this));
+        this.transactions.add(new CashOut(TransactionType.SAQUE));
+        this.transactions.add(new Deposit(TransactionType.DEPOSITO));
+        this.transactions.add(new Transfer(TransactionType.TRANSFERENCIA));
         this.transactions.add(new Statement(this.trackingService));
 
         this.accounts = Arrays.asList(

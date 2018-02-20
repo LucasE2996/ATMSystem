@@ -2,11 +2,22 @@ package options;
 
 import atmException.ATMException;
 
-public interface Transaction<T> {
+public abstract class Transaction {
 
-    void execute(TrackingService trackingService) throws ATMException;
+    private final TransactionType type;
+    protected double value;
 
-    TransactionType getType();
+    public Transaction(TransactionType type) {
+        this.type = type;
+    }
 
-    double getValue();
+    abstract void execute(TrackingService trackingService) throws ATMException;
+
+    TransactionType getType() {
+        return type;
+    }
+
+    double getValue() {
+        return value;
+    }
 }
