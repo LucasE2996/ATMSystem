@@ -2,9 +2,9 @@ package options;
 
 import atmException.ATMException;
 
-public interface Transaction {
+public interface Transaction<T> {
 
-    void executeTransaction(Account account) throws ATMException;
+    void execute(TrackingService trackingService) throws ATMException;
 
     TransactionType getType();
 

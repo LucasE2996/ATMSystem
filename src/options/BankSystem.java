@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class BankSystem {
 
     private final TrackingService trackingService = new TrackingService();
-    private ArrayList<Transaction> transactions = new ArrayList<>();
+    private ArrayList<Object> transactions = new ArrayList<>();
     private List<Account> accounts;
 
     public BankSystem() {
@@ -19,15 +20,14 @@ public class BankSystem {
         this.transactions.add(new Statement(this.trackingService));
 
         this.accounts = Arrays.asList(
-                new Account("54125-9", "João da Silva", 10854.78),
-                new Account("25214-8", "Pedro Otávio Magalhães", 1050.99),
-                new Account("88452-1", "Maria Green", 7696.00),
-                new Account("15935-7", "Stephan Pereira", 412.13)
+                new Account("54125-9", "João da Silva"),
+                new Account("25214-8", "Pedro Otávio Magalhães"),
+                new Account("88452-1", "Maria Green"),
+                new Account("15935-7", "Stephan Pereira")
         );
     }
 
-
-    public Transaction getTransaction(int position) {
+    public Object getTransaction(int position) {
         return this.transactions.get(position);
     }
 
@@ -39,6 +39,6 @@ public class BankSystem {
     }
 
     public void addTransaction(Transaction transaction) {
-        this.trackingService.registerEvent(transaction);
+        this.trackingService.registerTransaction(transaction);
     }
 }

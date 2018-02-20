@@ -2,6 +2,6 @@ package options;
 
 public enum  TransactionType {
 
-    SAQUE, DEPÓSITO, TRANSFERENCIA
+    SAQUE, DEPOSITO, TRANSFERENCIA
 
 }

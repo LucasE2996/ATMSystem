@@ -1,21 +1,13 @@
 package options;
 
-public class ShowSaldo implements Transaction {
+import java.util.concurrent.atomic.AtomicReference;
 
-    @Override
-    public void executeTransaction(Account account) {
-        System.out.println(account.getSaldo());
+public class ShowSaldo {
+
+    public Float execute(TrackingService trackingService) {
+        AtomicReference<Float> saldo = new AtomicReference<>((float) 0);
+        trackingService.getTransactions()
+                .forEach(transaction -> saldo.updateAndGet(v -> new Float((float) (v + transaction.getValue()))));
+        return saldo.get();
     }
-
-    @Override
-    public TransactionType getType() {
-        return null;
-    }
-
-    @Override
-    public double getValue() {
-        return 0;
-    }
-
-
 }

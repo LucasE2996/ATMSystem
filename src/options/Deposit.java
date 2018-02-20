@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Deposit implements Transaction {
 
     private double value;
-    private final TransactionType type = TransactionType.DEPÓSITO;
+    private final TransactionType type = TransactionType.DEPOSITO;
     Scanner scanner = new Scanner(System.in);
 
     public void executeTransaction(Account account) throws ATMException {

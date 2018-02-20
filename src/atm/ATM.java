@@ -3,14 +3,11 @@ package atm;
 import atmException.*;
 import options.*;
 
-import java.util.*;
-
 public class ATM {
     private final BankSystem bank = new BankSystem();
     private final MoneyHandler moneyHandler = new MoneyHandler();
     private Account loggedAccount;
     private Account accountSecundaria;
-    private Map<Integer, Transaction> options = new HashMap<>();
 
 
     public ATM() {
@@ -18,19 +15,12 @@ public class ATM {
         this.moneyHandler.setCelula50Pilha(4);
         this.moneyHandler.setCelula20Pilha(10);
         this.moneyHandler.setCelula10Pilha(20);
-
-        this.options.put(1,this.bank.getTransaction(0));
-        this.options.put(2,this.bank.getTransaction(1));
-        this.options.put(3,this.bank.getTransaction(2));
-        this.options.put(4,this.bank.getTransaction(3));
-        this.options.put(5,this.bank.getTransaction(4));
-
     }
 
     public void executeOption(int optionNumb) throws ATMException {
-        if (!(optionNumb > 5)){
-            Transaction transaction = options.get(optionNumb);
-            transaction.executeTransaction(loggedAccount);
+        if (!(optionNumb > 5)) {
+            Transaction transaction = (Transaction)bank.getTransaction(optionNumb+1);
+            transaction.execute(loggedAccount);
             this.bank.addTransaction(transaction);
 
         } else {
@@ -59,4 +49,5 @@ public class ATM {
         System.out.println("Notas de R$ 10,00: " + nota10);
         System.out.println("Valor não pode ser sacado: " + valor);
     }
+
 }
