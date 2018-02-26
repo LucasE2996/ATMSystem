@@ -1,7 +1,4 @@
-package options;
-
-import atmException.ATMException;
-import atmException.DepositException;
+package atm.options;
 
 import java.util.Scanner;
 

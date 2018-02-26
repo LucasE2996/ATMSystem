@@ -1,7 +1,7 @@
 package atm;
 
 import atmException.*;
-import options.*;
+import atm.options.*;
 
 public class ATM {
     private final BankSystem bank = new BankSystem();

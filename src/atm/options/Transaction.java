@@ -1,13 +1,13 @@
-package options;
+package atm.options;
 
 import atmException.ATMException;
 
 public abstract class Transaction {
 
     private final TransactionType type;
-    protected double value;
+    double value;
 
-    public Transaction(TransactionType type) {
+    Transaction(TransactionType type) {
         this.type = type;
     }
 

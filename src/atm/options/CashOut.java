@@ -1,15 +1,14 @@
-package options;
+package atm.options;
 
 import atmException.ATMException;
-import atmException.UnsuficientBalance;
 
 import java.util.Scanner;
 
-public class Transfer extends CashOut {
-
+public class CashOut extends Transaction {
+    // all values here are negative
     private final Scanner scanner = new Scanner(System.in);
 
-    public Transfer(TransactionType type) {
+    public CashOut(TransactionType type) {
         super(type);
     }
 
@@ -18,4 +17,5 @@ public class Transfer extends CashOut {
         value = scanner.nextDouble() * -1;
         trackingService.registerTransaction(this);
     }
+
 }

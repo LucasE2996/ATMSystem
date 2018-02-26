@@ -1,4 +1,4 @@
-package options;
+package atm;
 
 public class Money {
    private final byte value;

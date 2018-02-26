@@ -1,4 +1,4 @@
-package options;
+package atm.options;
 
 public enum  TransactionType {
 

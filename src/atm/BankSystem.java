@@ -1,16 +1,16 @@
-package options;
+package atm;
+
+import atm.options.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class BankSystem {
 
     private final TrackingService trackingService = new TrackingService();
     private ArrayList<Object> transactions = new ArrayList<>();
-    private List<Account> accounts;
 
     public BankSystem() {
         this.transactions.add(new ShowSaldo());
@@ -20,10 +20,7 @@ public class BankSystem {
         this.transactions.add(new Statement(this.trackingService));
 
         this.accounts = Arrays.asList(
-                new Account("54125-9", "João da Silva"),
-                new Account("25214-8", "Pedro Otávio Magalhães"),
-                new Account("88452-1", "Maria Green"),
-                new Account("15935-7", "Stephan Pereira")
+
         );
     }
 
@@ -31,12 +28,7 @@ public class BankSystem {
         return this.transactions.get(position);
     }
 
-    public Account verifyAccount(String accountNumber) {
-        return accounts.stream()
-                .filter(account -> account.exists(accountNumber))
-                .findAny()
-                .orElseThrow(NoSuchElementException::new);
-    }
+
 
     public void addTransaction(Transaction transaction) {
         this.trackingService.registerTransaction(transaction);

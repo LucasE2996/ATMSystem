@@ -1,13 +1,30 @@
 package printer;
 
+import FakeDB.DataBase;
+import atm.Account;
+
 import java.util.Scanner;
 
 public class View {
 
-    final private Scanner scanner;
+    private final Scanner scanner = new Scanner(System.in);
+    private final DataBase db;
 
     public View() {
-        this.scanner = new Scanner(System.in);
+        db = new DataBase();
+    }
+
+    private void initializeDB() {
+        db.addAccount(new Account("54125-9", "João da Silva"));
+        db.addAccount(new Account("25214-8", "Pedro Otávio Magalhães"));
+
+                new Account("88452-1", "Maria Green"),
+                new Account("15935-7", "Stephan Pereira")
+    }
+
+    public void mainRoutine() {
+        askForAccount();
+
     }
 
     public void showOptions() {
@@ -19,10 +36,6 @@ public class View {
 
     public void askForAccount() {
         System.out.println("Entre com a conta: ");
-    }
-
-    public String getInputValue() {
-        return this.scanner.next();
     }
 
     public void printOption(int option) {

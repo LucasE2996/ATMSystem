@@ -8,8 +8,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller();
 
-        System.out.println("Bem vindo ao Banco CHEI LONG\n\n");
-
         controller.logar();
 
         while (true) {
