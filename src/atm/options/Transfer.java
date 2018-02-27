@@ -10,12 +10,13 @@ public class Transfer extends Transaction {
         super(TransactionType.TRANSFERENCIA);
     }
 
-
-    public void execute(TrackingService trackingService, Account account, double value, Account destinyAccountName) {
+    public void execute(Account account, double value, Account destinyAccount) {
         setClientName(account.getClientName());
         setValue(value * -1);
-        this.destinyAccountName = destinyAccountName.getClientName();
-        trackingService.registerTransaction(this);
+        this.destinyAccountName = destinyAccount.getClientName();
+        account.getTrackingService().registerTransaction(this);
+        setValue(value);
+        destinyAccount.getTrackingService().registerTransaction(this);
     }
 
     public String getDestinyAccountName() {

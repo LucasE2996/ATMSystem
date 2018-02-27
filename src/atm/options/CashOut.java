@@ -2,16 +2,15 @@ package atm.options;
 
 import atm.Account;
 
-public class CashOut extends Transaction implements Executable {
+public class CashOut extends Transaction {
 
     public CashOut() {
         super(TransactionType.SAQUE);
     }
 
-    @Override
-    public void execute(TrackingService trackingService, Account account, double value) {
+    public void execute(Account account, double value) {
         setClientName(account.getClientName());
         setValue(value * -1);
-        trackingService.registerTransaction(this);
+        account.getTrackingService().registerTransaction(this);
     }
 }

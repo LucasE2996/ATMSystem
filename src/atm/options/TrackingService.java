@@ -1,9 +1,9 @@
 package atm.options;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
 public class TrackingService {
+
 
     private LinkedList<Transaction> transactions;
 

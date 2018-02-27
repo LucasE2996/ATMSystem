@@ -1,25 +1,24 @@
 package atm;
 
+import atm.options.TrackingService;
+
 public class Account {
 
    private final String numero;
    private final String clientName;
-   private Statement statement;
+   private final TrackingService trackingService;
 
-   public Account(String numero, String cliente) {
+   public Account(String numero, String cliente, TrackingService trackingService) {
         this.numero = numero;
         this.clientName = cliente;
+        this.trackingService = trackingService;
     }
-
-   public boolean exists(String number) {
-       return this.numero.equals(number);
-   }
 
     public String getClientName() {
         return clientName;
     }
 
-    public Statement getStatement() {
-        return statement;
+    public TrackingService getTrackingService() {
+        return trackingService;
     }
 }

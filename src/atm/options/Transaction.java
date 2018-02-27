@@ -10,7 +10,7 @@ public abstract class Transaction {
         this.type = type;
     }
 
-    TransactionType getType() {
+    public TransactionType getType() {
         return type;
     }
 
