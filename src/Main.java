@@ -1,5 +1,3 @@
-import controller.Controller;
-
 import java.util.Scanner;
 
 public class Main {

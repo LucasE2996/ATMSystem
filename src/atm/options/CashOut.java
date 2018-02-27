@@ -1,21 +1,17 @@
 package atm.options;
 
-import atmException.ATMException;
+import atm.Account;
 
-import java.util.Scanner;
+public class CashOut extends Transaction implements Executable {
 
-public class CashOut extends Transaction {
-    // all values here are negative
-    private final Scanner scanner = new Scanner(System.in);
-
-    public CashOut(TransactionType type) {
-        super(type);
+    public CashOut() {
+        super(TransactionType.SAQUE);
     }
 
     @Override
-    public void execute(TrackingService trackingService) throws ATMException {
-        value = scanner.nextDouble() * -1;
+    public void execute(TrackingService trackingService, Account account, double value) {
+        setClientName(account.getClientName());
+        setValue(value * -1);
         trackingService.registerTransaction(this);
     }
-
 }

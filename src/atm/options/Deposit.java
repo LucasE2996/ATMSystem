@@ -1,19 +1,17 @@
 package atm.options;
 
-import java.util.Scanner;
+import atm.Account;
 
-public class Deposit extends Transaction {
+public class Deposit extends Transaction implements Executable {
 
-    Scanner scanner = new Scanner(System.in);
-
-    public Deposit(TransactionType type) {
-        super(type);
+    public Deposit() {
+        super(TransactionType.DEPOSITO);
     }
 
     @Override
-    public void execute(TrackingService trackingService) {
-       value = this.scanner.nextDouble();
-       trackingService.registerTransaction(this);
+    public void execute(TrackingService trackingService, Account account, double value) {
+        setClientName(account.getClientName());
+        setValue(value);
+        trackingService.registerTransaction(this);
     }
-
 }

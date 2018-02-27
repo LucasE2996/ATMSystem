@@ -1,14 +1,12 @@
 package atm;
 
-import atm.options.Statement;
-
 public class Account {
 
    private final String numero;
    private final String clientName;
    private Statement statement;
 
-   Account(String numero, String cliente) {
+   public Account(String numero, String cliente) {
         this.numero = numero;
         this.clientName = cliente;
     }

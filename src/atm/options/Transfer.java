@@ -1,17 +1,24 @@
 package atm.options;
 
-import atmException.ATMException;
+import atm.Account;
 
-import java.util.Scanner;
+public class Transfer extends Transaction {
 
-public class Transfer extends CashOut {
+    private String destinyAccountName;
 
-    Transfer(TransactionType type) {
-        super(type);
+    public Transfer() {
+        super(TransactionType.TRANSFERENCIA);
     }
 
-    @Override
-    public void execute(TrackingService trackingService) throws ATMException {
+
+    public void execute(TrackingService trackingService, Account account, double value, Account destinyAccountName) {
+        setClientName(account.getClientName());
+        setValue(value * -1);
+        this.destinyAccountName = destinyAccountName.getClientName();
         trackingService.registerTransaction(this);
+    }
+
+    public String getDestinyAccountName() {
+        return destinyAccountName;
     }
 }

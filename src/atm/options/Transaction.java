@@ -1,23 +1,32 @@
 package atm.options;
 
-import atmException.ATMException;
-
 public abstract class Transaction {
 
     private final TransactionType type;
-    double value;
+    private double value;
+    private String clientName;
 
     Transaction(TransactionType type) {
         this.type = type;
     }
 
-    abstract void execute(TrackingService trackingService) throws ATMException;
-
     TransactionType getType() {
         return type;
     }
 
-    double getValue() {
+    public String getClientName() {
+        return clientName;
+    }
+
+    public double getValue() {
         return value;
+    }
+
+    void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    void setValue(double value) {
+        this.value = value;
     }
 }
