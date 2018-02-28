@@ -26,5 +26,4 @@ public class ATM {
         System.out.println("Notas de R$ 10,00: " + nota10);
         System.out.println("Valor não pode ser sacado: " + valor);
     }
-
 }

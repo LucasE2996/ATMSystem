@@ -10,13 +10,20 @@ public class Transfer extends Transaction {
         super(TransactionType.TRANSFERENCIA);
     }
 
-    public void execute(Account account, double value, Account destinyAccount) {
-        setClientName(account.getClientName());
-        setValue(value * -1);
-        this.destinyAccountName = destinyAccount.getClientName();
-        account.getTrackingService().registerTransaction(this);
-        setValue(value);
-        destinyAccount.getTrackingService().registerTransaction(this);
+    public void execute(Account account, double value, Account destinyAccount) throws RuntimeException{
+        if(account.getNumero().equals(destinyAccount.getNumero())) {
+            throw new RuntimeException("Operacao nao permitida");
+        } else {
+            setClientName(account.getClientName());
+            setValue(value * -1);
+            this.destinyAccountName = destinyAccount.getClientName();
+            account.getTrackingService().registerTransaction(this);
+            Transfer transfer = new Transfer();
+            transfer.setClientName(this.destinyAccountName);
+            transfer.setValue(value);
+            transfer.destinyAccountName = account.getClientName();
+            destinyAccount.getTrackingService().registerTransaction(transfer);
+        }
     }
 
     public String getDestinyAccountName() {

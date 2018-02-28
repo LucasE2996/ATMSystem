@@ -1,7 +1,5 @@
 package atm;
 
-import atmException.OutOfBill;
-
 import java.util.Stack;
 
 public class MoneyHandler {
@@ -76,7 +74,7 @@ public class MoneyHandler {
         }
     }
 
-    protected int divideBills(byte value, Stack<Money> type, double valorTotal) throws OutOfBill {
+    protected int divideBills(byte value, Stack<Money> type, double valorTotal) {
         int qtd = 0;
         int pilhaSize = type.size();
         for (int i = 0; i<pilhaSize; i++) {

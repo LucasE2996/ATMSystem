@@ -13,9 +13,9 @@ public class DataBase {
         accounts.add(account);
     }
 
-    public Account getAccountByName(String name) {
+    public Account getAccountByNumber(String number) {
         return accounts.stream()
-                .filter(account -> account.getClientName().equals(name))
+                .filter(account -> account.getNumero().equals(number))
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
     }

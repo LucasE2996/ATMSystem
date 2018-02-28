@@ -18,6 +18,10 @@ public class Account {
         return clientName;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
     public TrackingService getTrackingService() {
         return trackingService;
     }

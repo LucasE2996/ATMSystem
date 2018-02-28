@@ -5,29 +5,24 @@ import atm.ATM;
 import atm.Account;
 import atm.options.TrackingService;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class View {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
     private final DataBase db;
     private final ATM atm;
     private Account loggedUser;
-    private HashMap<Integer, Option> options = new HashMap<>();
+    private Map<Integer, Option> options;
 
-    public View() {
+    public View(Scanner scanner) {
+        this.scanner = scanner;
         db = new DataBase();
         atm = new ATM();
         initializeDB();
-
-        options.put(1, new BalancePage());
-        options.put(2, new CashOutPage());
-        options.put(3, new DepositPage());
-        options.put(4, new TransferPage());
-        options.put(5, new StatementPage());
-        options.put(6, new ExitPage());
+        this.options = new Configuration(scanner, db).getOptions();
     }
 
     private void initializeDB() {
@@ -41,12 +36,13 @@ public class View {
         askForAccount();
         while (true) {
             showOptions();
+            try { Thread.sleep (1000); } catch (InterruptedException e) {e.printStackTrace();}
         }
     }
 
     private void askForAccount() {
         System.out.println("Entre com a conta:");
-        loggedUser = db.getAccountByName(scanner.next());
+        loggedUser = db.getAccountByNumber(scanner.next());
     }
 
     private void showOptions() {
@@ -63,7 +59,7 @@ public class View {
                 .findAny()
                 .orElseThrow(NoSuchElementException::new)
                 .getValue()
-                .run(loggedUser, db);
+                .run(loggedUser);
     }
 
 }

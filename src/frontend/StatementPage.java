@@ -1,13 +1,13 @@
 package frontend;
 
-import FakeDB.DataBase;
 import atm.Account;
 import atm.options.Transaction;
 import atm.options.TransactionType;
+import atm.options.Transfer;
 
 public class StatementPage implements Option {
     @Override
-    public void run(Account account, DataBase db) {
+    public void run(Account account) {
         System.out.println("Seu historico:");
         for (Transaction transaction:
                 account.getTrackingService().getTransactions()) {
@@ -16,8 +16,9 @@ public class StatementPage implements Option {
             } else if (transaction.getType().equals(TransactionType.DEPOSITO)){
                 System.out.println("Deposito no valor de: " + transaction.getValue());
             } else if (transaction.getType().equals(TransactionType.TRANSFERENCIA)) {
+                Transfer transfer = (Transfer) transaction;
                 System.out.println("Transferencia no valor de " + transaction.getValue() +
-                " para " + transaction.get);
+                " para " + transfer.getDestinyAccountName());
             }
         }
     }
